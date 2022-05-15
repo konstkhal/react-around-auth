@@ -3,63 +3,14 @@
 //import logo from "./logo.svg";
 //import "./App.css";
 import Header from "./Header";
+import Main from "./Main";
 
 function App() {
   return (
     <div className="App page">
       <Header />
+      <Main />
 
-      <main className="content">
-        <section className="profile">
-          <div className="profile__photo-container">
-            <div className="profile__cover-overlay"></div>
-            <img
-              src="<%=require('./images/image.png')%>"
-              className="profile__photo"
-              alt="Alt placeholder"
-            />
-            <button
-              type="button"
-              className="button profile__link-change profile__link-change_place_image"
-            >
-              <img
-                src="<%=require('./images/pen.svg')%>"
-                className="profile__image-change profile__image-change_place_image"
-                alt="Alt placeholder"
-              />
-            </button>
-          </div>
-
-          <div className="profile__info">
-            <h1 className="profile__name">Jacques Cousteau</h1>
-
-            <button
-              type="button"
-              className="button profile__link-change profile__link-change_place_profile"
-            >
-              <img
-                src="<%=require('./images/pen.svg')%>"
-                className="profile__image-change"
-                alt="Alt placeholder"
-              />
-            </button>
-
-            <p className="profile__role">Explorer</p>
-          </div>
-
-          <button type="button" className="button profile__link-add">
-            <img
-              src="<%=require('./images/Vector-1.svg')%>"
-              className="profile__image-add"
-              alt="Alt placeholder"
-            />
-          </button>
-        </section>
-
-        <section className="photo-grid">
-          <ul className="photo-grid__list"></ul>
-        </section>
-      </main>
       <footer className="footer">
         <p className="footer__paragraph">© 2022 Around The U.S.</p>
       </footer>
