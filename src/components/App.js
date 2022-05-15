@@ -4,17 +4,14 @@
 //import "./App.css";
 import Header from "./Header";
 import Main from "./Main";
+import Footer from "./Footer";
 
 function App() {
   return (
     <div className="App page">
       <Header />
       <Main />
-
-      <footer className="footer">
-        <p className="footer__paragraph">© 2022 Around The U.S.</p>
-      </footer>
-
+      <Footer />
       {/* <!-- ----------------------------------------------------------------------- -->
     <!--                       Popup Image Preview window                        -->
     <!-- ----------------------------------------------------------------------- -->
