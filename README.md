@@ -1,3 +1,11 @@
+# ToDo
+- Make sure to add the Main component in the project.
+- Make sure to add the Footer component in the project.
+- Make sure to add the PopupWithForm component in the project.
+- Make sure to add the ImagePopup component in the project.
+- Make sure to add the Card component in the project.
+- Make sure to export the Api class.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

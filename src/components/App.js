@@ -1,18 +1,13 @@
 /** @format */
 
-import logo from "./logo.svg";
+//import logo from "./logo.svg";
 //import "./App.css";
+import Header from "./Header";
 
 function App() {
   return (
-    <div className="App">
-      <header className="header">
-        <img
-          src="<%=require('./images/Vector__header.svg')%>"
-          className="header__logo"
-          alt="Alt placeholder"
-        />
-      </header>
+    <div className="App page">
+      <Header />
 
       <main className="content">
         <section className="profile">
