@@ -1,11 +1,13 @@
 /** @format */
 
-import logo from "../images/Vector__header.svg";
+import logo from '../images/Vector__header.svg';
 
-export default function Header() {
+const Header = () => {
   return (
-    <header className="header">
-      <img src={logo} className="header__logo" alt="Alt placeholder" />
+    <header className='header'>
+      <img src={logo} className='header__logo' alt='Alt placeholder' />
     </header>
   );
-}
+};
+
+export default Header;
