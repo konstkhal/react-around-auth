@@ -10,7 +10,6 @@ export default function PopupWithForm({
   onClose,
   children,
 }) {
-  console.log(isOpen);
   return (
     <div
       className={`popup popup_type_${name} ${

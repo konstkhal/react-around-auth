@@ -23,8 +23,6 @@ export default function App() {
     setIsConfirmDeletePopupOpen,
   ] = React.useState(false);
 
-  console.log('rendered');
-
   const [selectedCard, setSelectedCard] =
     React.useState(undefined);
 
