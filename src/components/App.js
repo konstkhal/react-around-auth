@@ -26,39 +26,38 @@ export default function App() {
   const [selectedCard, setSelectedCard] =
     React.useState(undefined);
 
-  function handleEditProfileClick() {
+  const handleEditProfileClick = () =>
     setIsEditProfilePopupOpen(true);
-  }
-  function handleAddPlaceClick() {
+  const handleAddPlaceClick = () =>
     setIsAddPlacePopupOpen(true);
-  }
-  function handleEditAvatarClick() {
-    setIsEditAvatarPopupOpen(true);
-  }
 
-  function closeAllPopups() {
+  const handleEditAvatarClick = () =>
+    setIsEditAvatarPopupOpen(true);
+
+  const closeAllPopups = () => {
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
     setIsConfirmDeletePopupOpen(false);
     setSelectedCard(undefined);
-  }
+  };
 
-  function handleCardClick(card) {
+  const handleCardClick = (card) => {
     setSelectedCard(card);
-  }
+  };
 
   return (
     <div className='App page'>
       <Header />
-      <Main>
-        onEditProfileClick = {handleEditProfileClick}
-        onAddPlaceClick = {handleAddPlaceClick}
-        onEditAvatarClick = {handleEditAvatarClick}
-        onDeleteCardClick =
-        {() => setIsConfirmDeletePopupOpen(true)}
-        onCardClick = {handleCardClick};
-      </Main>
+      <Main
+        onEditProfileClick={handleEditProfileClick}
+        onAddPlaceClick={handleAddPlaceClick}
+        onEditAvatarClick={handleEditAvatarClick}
+        onDeleteCardClick={() =>
+          setIsConfirmDeletePopupOpen(true)
+        }
+        onCardClick={handleCardClick}
+      />
       <Footer />
 
       <PopupWithForm

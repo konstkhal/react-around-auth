@@ -48,7 +48,7 @@ function Main({
           <button
             type='button'
             className='button profile__link-change profile__link-change_place_image'
-            onClick={() => onEditAvatarClick}>
+            onClick={() => onEditAvatarClick()}>
             <img
               src={profile__change}
               className='profile__image-change profile__image-change_place_image'
@@ -92,7 +92,7 @@ function Main({
             <Card
               key={card._id}
               card={card}
-              onClick={onCardClick}
+              onCardClick={onCardClick}
               onDeleteCardClick={onDeleteCardClick}
             />
           ))}

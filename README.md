@@ -1,10 +1,47 @@
+# Around React Project
+
+## React App built with React Framework
+
+[- FrontEnd Developer (Konstantin Khaletsky) Linked In]("https://linkedin.com/in/konstkhal/")
+
+[- Practicum]("https://www.practicum100.com/")
+
+### About The Project
+
+This is a Web App React Project. Here you can click, like, add and delete images. Change you profile info and avatar.
+
+### Technology and tools used (Built With)
+
+* [commitlint.io:] (https://commitlint.io/)
+* [emoji as favicon] (https://css-tricks.com/svg-favicons-and-all-the-fun-things-we-can-do-with-them/)
+* [I had fun with vanilla JavaScript!] (http://vanilla-js.com/ Vanilla JS)
+* [A JavaScript library for building user interfaces] (https://en.reactjs.org/)
+* [HTML5 is a buzzword that refers to a set of modern web technologies] (https://html.spec.whatwg.org/)
+* [CSS3 are used to present docs written in HTML/XML (SVG, MathML, XHTML)] (https://compat.spec.whatwg.org/)
+* [FIGMA is a simple solution for a designer, a complex solution for a layout designer] (https://www.figma.com/)
+---
+
+
+### Contact
+
+---
+
+Konstantin Khaletsky - [@konstkhal](https://facebook.com/konstkhal) - konstkhal@gmail.com
+
+Project Link: [https://konstkhal.github.io/around-react/](https://konstkhal.github.io/around-react/)
+
+
+
+### Roadmap
+
+---
 # ToDo
-- Make sure to add the Main component in the project.
-- Make sure to add the Footer component in the project.
-- Make sure to add the PopupWithForm component in the project.
-- Make sure to add the ImagePopup component in the project.
-- Make sure to add the Card component in the project.
-- Make sure to export the Api class.
+🗸 Make sure to add the Main component in the project.
+🗸 Make sure to add the Footer component in the project.
+🗸 Make sure to add the PopupWithForm component in the project.
+🗸 Make sure to add the ImagePopup component in the project.
+🗸 Make sure to add the Card component in the project.
+🗸 Make sure to export the Api class.
 
 # Getting Started with Create React App
 

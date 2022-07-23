@@ -4,12 +4,12 @@ import React from 'react';
 
 export default function Card({
   card,
-  onClick,
+  onCardClick,
   onDeleteCardClick,
 }) {
   // console.log(onClick);
-  function handleClick() {
-    onClick(card);
+  function handleCardClick() {
+    onCardClick(card);
   }
   return (
     <li className='photo-grid__item'>
@@ -22,7 +22,7 @@ export default function Card({
         src={card.link}
         alt={card.name}
         className='photo-grid__image'
-        onClick={handleClick}
+        onClick={handleCardClick}
       />
       <div className='photo-grid__container'>
         <h2 className='photo-grid__title'>{card.name}</h2>

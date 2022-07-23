@@ -18,19 +18,19 @@ export default function PopupWithForm({
       <div className='popup__window'>
         <button
           type='button'
-          className={`'popup__close-button popup__close-button_${name}'`}
+          className={`popup__close-button popup__close-button_${name}`}
           aria-label='close'
           onClick={onClose}></button>
         <h2 className='popup__title'>{title}</h2>
 
         <form
-          className={`'form popup__container popup__container_${name}'`}
+          className={`form popup__container popup__container_${name}`}
           name={name}
           noValidate>
           {children}
           <button
             type='submit'
-            className={`'button form__submit-button form__submit-button_place_${name}'`}>
+            className={`button form__submit-button form__submit-button_place_${name}`}>
             {buttonText}
           </button>
         </form>
