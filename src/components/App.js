@@ -69,9 +69,9 @@ export default function App() {
         onClose={closeAllPopups}>
         <input
           id='name-input'
-          defaultValue='Input name'
+          defaultValue=''
+          placeholder='Input name'
           type='text'
-          placeholder=''
           className='form__input form__input_type_name'
           name='profilenameInput'
           minLength='2'
@@ -80,20 +80,23 @@ export default function App() {
         />
         <span
           id='name-input-error'
-          className='form__input-error'></span>
+          className='form__input-error'
+        />
         <input
           id='role-input'
-          defaultValue='Input role'
+          defaultValue=''
           type='text'
           className='form__input form__input_type_role'
           name='profileFormRoleInput'
           minLength='2'
           maxLength='200'
+          placeholder='Input role'
           required
         />
         <span
           id='role-input-error'
-          className='form__input-error'></span>
+          className='form__input-error'
+        />
       </PopupWithForm>
 
       <PopupWithForm
@@ -101,7 +104,8 @@ export default function App() {
         name='confirmDeleteCard'
         buttonText='Yes'
         isOpen={isConfirmDeletePopupOpen}
-        onClose={closeAllPopups}></PopupWithForm>
+        onClose={closeAllPopups}
+      />
 
       <PopupWithForm
         title='New place'
@@ -122,7 +126,8 @@ export default function App() {
         />
         <span
           id='name-place-error'
-          className='form__input-error'></span>
+          className='form__input-error'
+        />
         <input
           id='url-place'
           defaultValue=''
@@ -134,7 +139,8 @@ export default function App() {
         />
         <span
           id='url-place-error'
-          className='form__input-error'></span>
+          className='form__input-error'
+        />
       </PopupWithForm>
 
       <PopupWithForm
@@ -145,7 +151,7 @@ export default function App() {
         buttonText='Change'>
         <input
           id='url-avatar'
-          defaultValue=' '
+          defaultValue=''
           type='url'
           className='form__input form__input_type_avatar-link'
           placeholder='Image link'
@@ -154,7 +160,8 @@ export default function App() {
         />
         <span
           id='url-avatar-error'
-          className='form__input-error'></span>
+          className='form__input-error'
+        />
       </PopupWithForm>
 
       <ImagePopup

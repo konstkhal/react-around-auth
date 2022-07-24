@@ -41,7 +41,7 @@ function Main({
     <main className='content'>
       <section className='profile'>
         <div className='profile__photo-container'>
-          <div className='profile__cover-overlay'></div>
+          <div className='profile__cover-overlay' />
           <img
             src={userAvatar}
             className='profile__photo'

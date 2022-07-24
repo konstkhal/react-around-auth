@@ -17,7 +17,8 @@ export default function Card({
         type='button'
         className='button photo-grid__delete-button'
         aria-label='delete'
-        onClick={onDeleteCardClick}></button>
+        onClick={onDeleteCardClick}
+      />
       <img
         src={card.link}
         alt={card.name}
@@ -30,7 +31,8 @@ export default function Card({
           <button
             type='button'
             className='button photo-grid__like-button'
-            aria-label='like'></button>
+            aria-label='like'
+          />
           <span className='photo-grid__likes-counter'>
             {card.likes.length}
           </span>

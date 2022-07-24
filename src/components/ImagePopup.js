@@ -13,7 +13,8 @@ export default function ImagePopup({ card, onClose }) {
           type='button'
           className='popup__close-button popup__close-button_place_preview'
           aria-label='close'
-          onClick={onClose}></button>
+          onClick={onClose}
+        />
         <img
           src={card ? card.link : ''}
           alt={card ? card.name : ''}
