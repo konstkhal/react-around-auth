@@ -5,7 +5,9 @@
 const Footer = () => {
   return (
     <footer className='footer'>
-      <p className='footer__paragraph'>© 2022 Around The U.S.</p>
+      <p className='footer__paragraph'>
+        © {new Date().getFullYear()} Around The U.S.
+      </p>
     </footer>
   );
 };
