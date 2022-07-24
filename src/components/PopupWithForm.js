@@ -25,8 +25,7 @@ export default function PopupWithForm({
 
         <form
           className={`form popup__container popup__container_${name}`}
-          name={name}
-          noValidate>
+          name={name}>
           {children}
           <button
             type='submit'
