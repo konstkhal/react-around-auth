@@ -49,6 +49,7 @@ export default function App() {
   return (
     <div className='App page'>
       <Header />
+
       <Main
         onEditProfileClick={handleEditProfileClick}
         onAddPlaceClick={handleAddPlaceClick}
@@ -58,6 +59,7 @@ export default function App() {
         }
         onCardClick={handleCardClick}
       />
+
       <Footer />
 
       <PopupWithForm
