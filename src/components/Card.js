@@ -11,10 +11,10 @@ export default function Card({
 }) {
   const currentUser = React.useContext(UserContext);
   // Checking if the current user is the owner of the current card
-  const isOwn = card.owner._id === currentUser._id;
+  const isOwn = card.owner._id === currentUser.id;
 
   const isLiked = card.likes.some(
-    (like) => like._id === currentUser.id
+    (like) => like._id === currentUser._id
   );
 
   const cardLikesButtonClassName = `button photo-grid__like-button ${
@@ -41,9 +41,6 @@ export default function Card({
   function handleCardClick() {
     onCardClick(card);
   }
-
-  /*  console.log(card.likes[0]._id);
-  console.log(currentUser.id); */
 
   return (
     <li className='photo-grid__item'>

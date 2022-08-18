@@ -28,13 +28,13 @@ function Main({
     ); */
 
     // Send a request to the API and getting the updated card data
-    console.log(isLiked);
-    console.log(card);
+    /*     console.log(isLiked);
+    console.log(card); */
     api
-      .handleLikeCardStatus(card, isLiked)
+      .handleLikeCardStatus(card._id, isLiked)
       .then((newCard) => {
-        setCards((cards) =>
-          cards.map((currentCard) =>
+        setCards((stateCards) =>
+          stateCards.map((currentCard) =>
             currentCard._id === card._id
               ? newCard
               : currentCard
