@@ -1,24 +1,60 @@
 /** @format */
 
 import React from 'react';
+import { UserContext } from '../contexts/CurrentUserContext';
 
 export default function Card({
   card,
   onCardClick,
   onDeleteCardClick,
+  onCardLike,
 }) {
+  const currentUser = React.useContext(UserContext);
+  // Checking if the current user is the owner of the current card
+  const isOwn = card.owner._id === currentUser._id;
+
+  const isLiked = card.likes.some(
+    (like) => like._id === currentUser.id
+  );
+
+  const cardLikesButtonClassName = `button photo-grid__like-button ${
+    isLiked ? 'photo-grid__like-button_active' : ''
+  }`;
+  // Creating a variable which you'll then set in `className` for the delete button
+  const cardDeleteButtonClassName = `button photo-grid__delete-button ${
+    isOwn
+      ? 'photo-grid__delete-button_visible'
+      : 'photo-grid__delete-button_hidden'
+  }`;
+
   // console.log(onClick);
+  /*  const handleLikeClick = useCallback(() => {
+    onCardLike(card._id);
+  }, []); */
+
+  const handleLikeClick = () => onCardLike(card, isLiked);
+
+  const handleDeleteClick = () => {
+    onDeleteCardClick(card._id);
+  };
+
   function handleCardClick() {
     onCardClick(card);
   }
+
+  /*  console.log(card.likes[0]._id);
+  console.log(currentUser.id); */
+
   return (
     <li className='photo-grid__item'>
-      <button
-        type='button'
-        className='button photo-grid__delete-button'
-        aria-label='delete'
-        onClick={onDeleteCardClick}
-      />
+      {isOwn && (
+        <button
+          type='button'
+          className={cardDeleteButtonClassName}
+          aria-label='delete'
+          onClick={handleDeleteClick}
+        />
+      )}
       <img
         src={card.link}
         alt={card.name}
@@ -30,8 +66,9 @@ export default function Card({
         <div className='photo-grid__like-container'>
           <button
             type='button'
-            className='button photo-grid__like-button'
+            className={cardLikesButtonClassName}
             aria-label='like'
+            onClick={handleLikeClick}
           />
           <span className='photo-grid__likes-counter'>
             {card.likes.length}

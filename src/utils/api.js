@@ -81,6 +81,16 @@ class Api {
     );
   }
 
+  handleLikeCardStatus(cardId, isLiked) {
+    return this._customFetch(
+      `${this._baseUrl}/cards/likes/${cardId}`,
+      {
+        headers: this._headers,
+        method: isLiked ? 'DELETE' : 'PUT',
+      }
+    );
+  }
+
   // other methods for working with the API
 }
 

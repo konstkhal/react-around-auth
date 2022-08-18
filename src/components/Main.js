@@ -1,6 +1,8 @@
 /** @format */
 
-import React from 'react';
+import React, { useContext } from 'react';
+
+import { UserContext } from '../contexts/CurrentUserContext';
 //import profile__photo from '../images/image.png';
 import profileChangeImage from '../images/pen.svg';
 import linkAddImage from '../images/Vector-1.svg';
@@ -14,21 +16,60 @@ function Main({
   onCardClick,
   onDeleteCardClick,
 }) {
-  const [userName, setUserName] = React.useState('');
-  const [userDescription, setUserDescription] =
-    React.useState('');
-  const [userAvatar, setUserAvatar] = React.useState('');
+  const currentUser = useContext(UserContext);
+
   const [cards, setCards] = React.useState([]);
 
-  React.useEffect(() => {
+  function handleCardLike(card, isLiked) {
+    // Check one more time if this card was already liked
+    //console.log(card);
+    /*   const isLiked = card.likes.some(
+      (user) => user._id === currentUser._id
+    ); */
+
+    // Send a request to the API and getting the updated card data
+    console.log(isLiked);
+    console.log(card);
     api
+      .handleLikeCardStatus(card, isLiked)
+      .then((newCard) => {
+        setCards((cards) =>
+          cards.map((currentCard) =>
+            currentCard._id === card._id
+              ? newCard
+              : currentCard
+          )
+        );
+      });
+  }
+
+  function handleCardDelete(card) {
+    api
+      .deleteCard(card._id)
+      .then(() => {
+        setCards((cards) =>
+          cards.filter(
+            (cardLeft) => cardLeft._id !== card._id
+          )
+        );
+      })
+      .catch((err) => console.log(err));
+  }
+
+  /* const [userName, setUserName] = React.useState('');
+  const [userDescription, setUserDescription] =
+    React.useState('');
+  const [userAvatar, setUserAvatar] = React.useState(''); */
+
+  React.useEffect(() => {
+    /*  api
       .getUserInfo()
       .then((userData) => {
         setUserName(userData.name);
         setUserDescription(userData.about);
         setUserAvatar(userData.avatar);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err)); */
     api
       .getInitialCards()
       .then((cardData) => {
@@ -43,7 +84,7 @@ function Main({
         <div className='profile__photo-container'>
           <div className='profile__cover-overlay' />
           <img
-            src={userAvatar}
+            src={currentUser.avatar}
             className='profile__photo'
             alt='Alt placeholder'
           />
@@ -60,7 +101,9 @@ function Main({
         </div>
 
         <div className='profile__info'>
-          <h1 className='profile__name'>{userName}</h1>
+          <h1 className='profile__name'>
+            {currentUser.name}
+          </h1>
 
           <button
             type='button'
@@ -73,7 +116,9 @@ function Main({
             />
           </button>
 
-          <p className='profile__role'>{userDescription}</p>
+          <p className='profile__role'>
+            {currentUser.about}
+          </p>
         </div>
 
         <button
@@ -95,7 +140,8 @@ function Main({
               key={card._id}
               card={card}
               onCardClick={onCardClick}
-              onDeleteCardClick={onDeleteCardClick}
+              onDeleteCardClick={handleCardDelete}
+              onCardLike={handleCardLike}
             />
           ))}
         </ul>
