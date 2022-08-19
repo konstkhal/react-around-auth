@@ -1,5 +1,7 @@
 {
     "conventionalCommits.scopes": [
-        "likes"
+      "likes",
+      "delete",
+      "settings"
     ]
 }
