@@ -11,7 +11,7 @@ export default function Card({
 }) {
   const currentUser = React.useContext(UserContext);
   // Checking if the current user is the owner of the current card
-  const isOwn = card.owner._id === currentUser.id;
+  const isOwn = card.owner._id === currentUser._id;
 
   const isLiked = card.likes.some(
     (like) => like._id === currentUser._id
@@ -32,11 +32,12 @@ export default function Card({
     onCardLike(card._id);
   }, []); */
 
+  /*  console.log(isOwn); */
+
   const handleLikeClick = () => onCardLike(card, isLiked);
 
-  const handleDeleteClick = () => {
+  const handleDeleteClick = () =>
     onDeleteCardClick(card._id);
-  };
 
   function handleCardClick() {
     onCardClick(card);

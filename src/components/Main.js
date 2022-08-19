@@ -22,14 +22,8 @@ function Main({
 
   function handleCardLike(card, isLiked) {
     // Check one more time if this card was already liked
-    //console.log(card);
-    /*   const isLiked = card.likes.some(
-      (user) => user._id === currentUser._id
-    ); */
-
     // Send a request to the API and getting the updated card data
-    /*     console.log(isLiked);
-    console.log(card); */
+
     api
       .handleLikeCardStatus(card._id, isLiked)
       .then((newCard) => {
@@ -43,13 +37,14 @@ function Main({
       });
   }
 
-  function handleCardDelete(card) {
+  function handleCardDelete(cardId) {
+    console.log(cardId);
     api
-      .deleteCard(card._id)
+      .deleteCard(cardId)
       .then(() => {
         setCards((cards) =>
           cards.filter(
-            (cardLeft) => cardLeft._id !== card._id
+            (cardLeft) => cardLeft._id !== cardId
           )
         );
       })
