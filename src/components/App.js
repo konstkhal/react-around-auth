@@ -6,6 +6,7 @@ import Main from './Main';
 import Footer from './Footer';
 import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
+import EditProfilePopup from './EditProfilePopup';
 
 import { api } from '../utils/api';
 import { UserContext } from '../contexts/CurrentUserContext';
@@ -77,7 +78,12 @@ export default function App() {
 
         <Footer />
 
-        <PopupWithForm
+        <EditProfilePopup
+          isOpen={isEditProfilePopupOpen}
+          onClose={closeAllPopups}
+        />
+
+        {/* <PopupWithForm
           title='Edit profile'
           name='editProfile'
           isOpen={isEditProfilePopupOpen}
@@ -112,7 +118,7 @@ export default function App() {
             id='role-input-error'
             className='form__input-error'
           />
-        </PopupWithForm>
+        </PopupWithForm> */}
 
         <PopupWithForm
           title='Are you sure?'
