@@ -51,7 +51,7 @@ export default function EditProfilePopup({
         id='name-input'
         onChange={handleNameChange}
         /* defaultValue='' */
-        value={name}
+        value={name || ''}
         placeholder='Input name'
         type='text'
         className='form__input form__input_type_name'
@@ -68,7 +68,7 @@ export default function EditProfilePopup({
         id='role-input'
         onChange={handleRoleChange}
         /* defaultValue='' */
-        value={description}
+        value={description || ''}
         type='text'
         className='form__input form__input_type_role'
         name='profileFormRoleInput'
