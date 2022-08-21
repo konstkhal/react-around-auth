@@ -12,12 +12,12 @@ import { api } from '../utils/api';
 import { UserContext } from '../contexts/CurrentUserContext';
 
 export default function App() {
-  const [currentUser, setcurrentUser] = React.useState({}); //nameUser, avatarUser,aboutUser
+  const [currentUser, setCurrentUser] = React.useState({}); //nameUser, avatarUser,aboutUser
   useEffect(() => {
     api
       .getUserInfo()
       .then((userData) => {
-        setcurrentUser({
+        setCurrentUser({
           name: userData.name,
           avatar: userData.avatar,
           about: userData.about,
@@ -45,6 +45,7 @@ export default function App() {
 
   const handleEditProfileClick = () =>
     setIsEditProfilePopupOpen(true);
+
   const handleAddPlaceClick = () =>
     setIsAddPlacePopupOpen(true);
 
@@ -61,6 +62,13 @@ export default function App() {
 
   const handleCardClick = (card) => {
     setSelectedCard(card);
+  };
+
+  const handleUpdateUser = ({ name, about }) => {
+    api
+      .setUserInfo({ name, about })
+      .then((user) => setCurrentUser(user))
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -81,6 +89,7 @@ export default function App() {
         <EditProfilePopup
           isOpen={isEditProfilePopupOpen}
           onClose={closeAllPopups}
+          onUpdateUser={handleUpdateUser}
         />
 
         {/* <PopupWithForm
