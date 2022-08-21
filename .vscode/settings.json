@@ -2,6 +2,7 @@
     "conventionalCommits.scopes": [
       "likes",
       "delete",
-      "settings"
+      "settings",
+      "profile"
     ]
 }
