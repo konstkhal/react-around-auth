@@ -7,12 +7,14 @@ import Footer from './Footer';
 import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
 import EditProfilePopup from './EditProfilePopup';
+import EditAvatarPopup from './EditAvatarPopup';
 
 import { api } from '../utils/api';
 import { UserContext } from '../contexts/CurrentUserContext';
 
 export default function App() {
   const [currentUser, setCurrentUser] = React.useState({}); //nameUser, avatarUser,aboutUser
+
   useEffect(() => {
     api
       .getUserInfo()
@@ -27,14 +29,72 @@ export default function App() {
       .catch((err) => console.log(err));
   }, []);
 
+  const [cards, setCards] = React.useState([]);
+
+  function handleCardLike(card, isLiked) {
+    // Check one more time if this card was already liked
+    // Send a request to the API and getting the updated card data
+
+    api
+      .handleLikeCardStatus(card._id, isLiked)
+      .then((newCard) => {
+        setCards((stateCards) =>
+          stateCards.map((currentCard) =>
+            currentCard._id === card._id
+              ? newCard
+              : currentCard
+          )
+        );
+      });
+  }
+
+  function handleCardDelete(cardId) {
+    console.log(cardId);
+    api
+      .deleteCard(cardId)
+      .then(() => {
+        setCards((cards) =>
+          cards.filter(
+            (cardLeft) => cardLeft._id !== cardId
+          )
+        );
+      })
+      .catch((err) => console.log(err));
+  }
+
+  /* const [userName, setUserName] = React.useState('');
+  const [userDescription, setUserDescription] =
+    React.useState('');
+  const [userAvatar, setUserAvatar] = React.useState(''); */
+
+  React.useEffect(() => {
+    /*  api
+      .getUserInfo()
+      .then((userData) => {
+        setUserName(userData.name);
+        setUserDescription(userData.about);
+        setUserAvatar(userData.avatar);
+      })
+      .catch((err) => console.log(err)); */
+    api
+      .getInitialCards()
+      .then((cardData) => {
+        setCards(cardData);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   const [
     isEditProfilePopupOpen,
     setIsEditProfilePopupOpen,
   ] = React.useState(false);
+
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] =
     React.useState(false);
+
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] =
     React.useState(false);
+
   const [
     isConfirmDeletePopupOpen,
     setIsConfirmDeletePopupOpen,
@@ -71,6 +131,13 @@ export default function App() {
       .catch((err) => console.log(err));
   };
 
+  const handleUpdateAvatar = (url) => {
+    api
+      .setAvatarLink(url)
+      .then((user) => setCurrentUser(user))
+      .catch((err) => console.log(err));
+  };
+
   return (
     <UserContext.Provider value={currentUser}>
       <div className='App page'>
@@ -80,8 +147,10 @@ export default function App() {
           onEditProfileClick={handleEditProfileClick}
           onAddPlaceClick={handleAddPlaceClick}
           onEditAvatarClick={handleEditAvatarClick}
-          // onDeleteCardClick={handleCardDelete}
           onCardClick={handleCardClick}
+          cards={cards}
+          onCardLike={handleCardLike}
+          onCardDelete={handleCardDelete}
         />
 
         <Footer />
@@ -91,43 +160,6 @@ export default function App() {
           onClose={closeAllPopups}
           onUpdateUser={handleUpdateUser}
         />
-
-        {/* <PopupWithForm
-          title='Edit profile'
-          name='editProfile'
-          isOpen={isEditProfilePopupOpen}
-          onClose={closeAllPopups}>
-          <input
-            id='name-input'
-            defaultValue=''
-            placeholder='Input name'
-            type='text'
-            className='form__input form__input_type_name'
-            name='profilenameInput'
-            minLength='2'
-            maxLength='40'
-            required
-          />
-          <span
-            id='name-input-error'
-            className='form__input-error'
-          />
-          <input
-            id='role-input'
-            defaultValue=''
-            type='text'
-            className='form__input form__input_type_role'
-            name='profileFormRoleInput'
-            minLength='2'
-            maxLength='200'
-            placeholder='Input role'
-            required
-          />
-          <span
-            id='role-input-error'
-            className='form__input-error'
-          />
-        </PopupWithForm> */}
 
         <PopupWithForm
           title='Are you sure?'
@@ -173,26 +205,11 @@ export default function App() {
           />
         </PopupWithForm>
 
-        <PopupWithForm
-          title='Change Profile Picture'
-          name='avatarChange'
+        <EditAvatarPopup
+          onUpdateAvatar={handleUpdateAvatar}
           isOpen={isEditAvatarPopupOpen}
           onClose={closeAllPopups}
-          buttonText='Change'>
-          <input
-            id='url-avatar'
-            defaultValue=''
-            type='url'
-            className='form__input form__input_type_avatar-link'
-            placeholder='Image link'
-            name='name'
-            required
-          />
-          <span
-            id='url-avatar-error'
-            className='form__input-error'
-          />
-        </PopupWithForm>
+        />
 
         <ImagePopup
           card={selectedCard}

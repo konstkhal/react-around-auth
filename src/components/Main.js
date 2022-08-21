@@ -6,72 +6,19 @@ import { UserContext } from '../contexts/CurrentUserContext';
 //import profile__photo from '../images/image.png';
 import profileChangeImage from '../images/pen.svg';
 import linkAddImage from '../images/Vector-1.svg';
-import { api } from '../utils/api.js';
+//import { api } from '../utils/api.js';
 import Card from './Card.js';
 
 function Main({
+  cards,
   onEditProfileClick,
   onAddPlaceClick,
   onEditAvatarClick,
   onCardClick,
-  onDeleteCardClick,
+  onDeleteCardClick, //   onCardDelete,
+  onCardLike,
 }) {
   const currentUser = useContext(UserContext);
-
-  const [cards, setCards] = React.useState([]);
-
-  function handleCardLike(card, isLiked) {
-    // Check one more time if this card was already liked
-    // Send a request to the API and getting the updated card data
-
-    api
-      .handleLikeCardStatus(card._id, isLiked)
-      .then((newCard) => {
-        setCards((stateCards) =>
-          stateCards.map((currentCard) =>
-            currentCard._id === card._id
-              ? newCard
-              : currentCard
-          )
-        );
-      });
-  }
-
-  function handleCardDelete(cardId) {
-    console.log(cardId);
-    api
-      .deleteCard(cardId)
-      .then(() => {
-        setCards((cards) =>
-          cards.filter(
-            (cardLeft) => cardLeft._id !== cardId
-          )
-        );
-      })
-      .catch((err) => console.log(err));
-  }
-
-  /* const [userName, setUserName] = React.useState('');
-  const [userDescription, setUserDescription] =
-    React.useState('');
-  const [userAvatar, setUserAvatar] = React.useState(''); */
-
-  React.useEffect(() => {
-    /*  api
-      .getUserInfo()
-      .then((userData) => {
-        setUserName(userData.name);
-        setUserDescription(userData.about);
-        setUserAvatar(userData.avatar);
-      })
-      .catch((err) => console.log(err)); */
-    api
-      .getInitialCards()
-      .then((cardData) => {
-        setCards(cardData);
-      })
-      .catch((err) => console.log(err));
-  }, []);
 
   return (
     <main className='content'>
@@ -135,8 +82,8 @@ function Main({
               key={card._id}
               card={card}
               onCardClick={onCardClick}
-              onDeleteCardClick={handleCardDelete}
-              onCardLike={handleCardLike}
+              onDeleteCardClick={onDeleteCardClick}
+              onCardLike={onCardLike}
             />
           ))}
         </ul>
