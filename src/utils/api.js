@@ -14,12 +14,18 @@ class Api {
     }
   };
 
-  getInitialCards() {
+  init = () =>
+    Promise.all([
+      this._getInitialCards(),
+      this._getUserInfo(),
+    ]);
+
+  _getInitialCards() {
     return this._customFetch(`${this._baseUrl}/cards`, {
       headers: this._headers,
     });
   }
-  getUserInfo() {
+  _getUserInfo() {
     return this._customFetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
     });
@@ -61,7 +67,7 @@ class Api {
       }
     );
   }
-  likeCard(cardId) {
+  /*   likeCard(cardId) {
     return this._customFetch(
       `${this._baseUrl}/cards/likes/${cardId}`,
       {
@@ -79,7 +85,7 @@ class Api {
         method: 'DELETE',
       }
     );
-  }
+  } */
 
   handleLikeCardStatus(cardId, isLiked) {
     return this._customFetch(

@@ -1,21 +1,21 @@
 /** @format */
 
-import React, { useEffect } from 'react';
-import Header from './Header';
-import Main from './Main';
-import Footer from './Footer';
-import PopupWithForm from './PopupWithForm';
-import ImagePopup from './ImagePopup';
-import EditProfilePopup from './EditProfilePopup';
-import EditAvatarPopup from './EditAvatarPopup';
-
-import { api } from '../utils/api';
+import React from 'react';
 import { UserContext } from '../contexts/CurrentUserContext';
+import { api } from '../utils/api';
+import AddPlacePopup from './AddPlacePopup';
+import EditAvatarPopup from './EditAvatarPopup';
+import EditProfilePopup from './EditProfilePopup';
+import Footer from './Footer';
+import Header from './Header';
+import ImagePopup from './ImagePopup';
+import Main from './Main';
+import PopupWithForm from './PopupWithForm';
 
 export default function App() {
   const [currentUser, setCurrentUser] = React.useState({}); //nameUser, avatarUser,aboutUser
 
-  useEffect(() => {
+  /*   useEffect(() => {
     api
       .getUserInfo()
       .then((userData) => {
@@ -27,7 +27,14 @@ export default function App() {
         });
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, []); */
+
+  const handleAddPlaceSubmit = ({ name, link }) => {
+    api
+      .createCard({ name, link })
+      .then((card) => setCards([card, ...cards]))
+      .catch((err) => console.log(err));
+  };
 
   const [cards, setCards] = React.useState([]);
 
@@ -68,18 +75,16 @@ export default function App() {
   const [userAvatar, setUserAvatar] = React.useState(''); */
 
   React.useEffect(() => {
-    /*  api
-      .getUserInfo()
-      .then((userData) => {
-        setUserName(userData.name);
-        setUserDescription(userData.about);
-        setUserAvatar(userData.avatar);
-      })
-      .catch((err) => console.log(err)); */
     api
-      .getInitialCards()
-      .then((cardData) => {
+      .init()
+      .then(([cardData, userData]) => {
         setCards(cardData);
+        setCurrentUser({
+          name: userData.name,
+          avatar: userData.avatar,
+          about: userData.about,
+          _id: userData._id,
+        });
       })
       .catch((err) => console.log(err));
   }, []);
@@ -138,6 +143,8 @@ export default function App() {
       .catch((err) => console.log(err));
   };
 
+  /*   console.log(closeAllPopups); //Получает объект вместо функции */
+
   return (
     <UserContext.Provider value={currentUser}>
       <div className='App page'>
@@ -169,41 +176,13 @@ export default function App() {
           onClose={closeAllPopups}
         />
 
-        <PopupWithForm
-          title='New place'
-          name='namePlace'
+        <AddPlacePopup
+          onAddPlaceSubmit={handleAddPlaceSubmit}
           isOpen={isAddPlacePopupOpen}
           onClose={closeAllPopups}
-          buttonText='Create'>
-          <input
-            id='name-place'
-            defaultValue=''
-            type='text'
-            className='form__input form__input_type_image-title'
-            placeholder='Title'
-            name='namePlace'
-            minLength='1'
-            maxLength='30'
-            required
-          />
-          <span
-            id='name-place-error'
-            className='form__input-error'
-          />
-          <input
-            id='url-place'
-            defaultValue=''
-            type='url'
-            className='form__input form__input_type_image-link'
-            placeholder='Image link'
-            name='linkPlace'
-            required
-          />
-          <span
-            id='url-place-error'
-            className='form__input-error'
-          />
-        </PopupWithForm>
+          title='New place'
+          name='namePlace'
+        />
 
         <EditAvatarPopup
           onUpdateAvatar={handleUpdateAvatar}
