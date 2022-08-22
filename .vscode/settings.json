@@ -3,6 +3,7 @@
       "likes",
       "delete",
       "settings",
-      "profile"
+      "profile",
+      "popup"
     ]
 }
