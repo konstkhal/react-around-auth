@@ -27,13 +27,6 @@ export default function Card({
       : 'photo-grid__delete-button_hidden'
   }`;
 
-  // console.log(onClick);
-  /*  const handleLikeClick = useCallback(() => {
-    onCardLike(card._id);
-  }, []); */
-
-  /*  console.log(isOwn); */
-
   const handleLikeClick = () => onCardLike(card, isLiked);
 
   const handleDeleteClick = () =>

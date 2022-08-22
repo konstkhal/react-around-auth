@@ -22,7 +22,7 @@ export default function AddPlacePopup({
 
   const handleCardLinkChange = (event) =>
     setCardLink(event.target.value);
-  //console.log(onClose); //Получает объект вместо функции
+
   return (
     <PopupWithForm
       title='New place'

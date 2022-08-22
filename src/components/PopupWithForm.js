@@ -11,7 +11,6 @@ export default function PopupWithForm({
   onSubmit,
   children,
 }) {
-  /*   console.log(onClose); //Получает объект вместо функции */
   return (
     <div
       className={`popup popup_type_${name} ${

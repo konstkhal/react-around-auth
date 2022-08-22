@@ -28,11 +28,9 @@ export default function EditProfilePopup({
 
   const handleNameChange = (event) =>
     setName(event.target.value);
-  console.log(name);
 
   const handleRoleChange = (event) =>
     setDescription(event.target.value);
-  console.log(description);
 
   const handleSubmit = (event) => {
     event.preventDefault();

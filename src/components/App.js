@@ -15,20 +15,6 @@ import PopupWithForm from './PopupWithForm';
 export default function App() {
   const [currentUser, setCurrentUser] = React.useState({}); //nameUser, avatarUser,aboutUser
 
-  /*   useEffect(() => {
-    api
-      .getUserInfo()
-      .then((userData) => {
-        setCurrentUser({
-          name: userData.name,
-          avatar: userData.avatar,
-          about: userData.about,
-          _id: userData._id,
-        });
-      })
-      .catch((err) => console.log(err));
-  }, []); */
-
   const handleAddPlaceSubmit = ({ name, link }) => {
     api
       .createCard({ name, link })
@@ -56,7 +42,6 @@ export default function App() {
   }
 
   function handleCardDelete(cardId) {
-    console.log(cardId);
     api
       .deleteCard(cardId)
       .then(() => {
@@ -142,8 +127,6 @@ export default function App() {
       .then((user) => setCurrentUser(user))
       .catch((err) => console.log(err));
   };
-
-  /*   console.log(closeAllPopups); //Получает объект вместо функции */
 
   return (
     <UserContext.Provider value={currentUser}>
