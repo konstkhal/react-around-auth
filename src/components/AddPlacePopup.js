@@ -23,6 +23,11 @@ export default function AddPlacePopup({
   const handleCardLinkChange = (event) =>
     setCardLink(event.target.value);
 
+  React.useEffect(() => {
+    setCardName('');
+    setCardLink('');
+  }, [isOpen]);
+
   return (
     <PopupWithForm
       title='New place'
@@ -33,7 +38,7 @@ export default function AddPlacePopup({
       buttonText='Create'>
       <input
         id='name-place'
-        defaultValue=''
+        value={cardName || ''}
         type='text'
         onChange={handleCardNameChange}
         className='form__input form__input_type_image-title'
@@ -49,7 +54,7 @@ export default function AddPlacePopup({
       />
       <input
         id='url-place'
-        defaultValue=''
+        value={cardLink || ''}
         type='url'
         onChange={handleCardLinkChange}
         className='form__input form__input_type_image-link'

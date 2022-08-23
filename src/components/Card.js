@@ -6,7 +6,7 @@ import { UserContext } from '../contexts/CurrentUserContext';
 export default function Card({
   card,
   onCardClick,
-  onDeleteCardClick,
+  onCardDelete,
   onCardLike,
 }) {
   const currentUser = React.useContext(UserContext);
@@ -29,8 +29,7 @@ export default function Card({
 
   const handleLikeClick = () => onCardLike(card, isLiked);
 
-  const handleDeleteClick = () =>
-    onDeleteCardClick(card._id);
+  const handleDeleteClick = () => onCardDelete(card._id);
 
   function handleCardClick() {
     onCardClick(card);

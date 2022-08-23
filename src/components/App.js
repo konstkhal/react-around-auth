@@ -14,6 +14,7 @@ import PopupWithForm from './PopupWithForm';
 
 export default function App() {
   const [currentUser, setCurrentUser] = React.useState({}); //nameUser, avatarUser,aboutUser
+  const [cards, setCards] = React.useState([]);
 
   const handleAddPlaceSubmit = ({ name, link }) => {
     api
@@ -21,8 +22,6 @@ export default function App() {
       .then((card) => setCards([card, ...cards]))
       .catch((err) => console.log(err));
   };
-
-  const [cards, setCards] = React.useState([]);
 
   function handleCardLike(card, isLiked) {
     // Check one more time if this card was already liked
@@ -53,11 +52,6 @@ export default function App() {
       })
       .catch((err) => console.log(err));
   }
-
-  /* const [userName, setUserName] = React.useState('');
-  const [userDescription, setUserDescription] =
-    React.useState('');
-  const [userAvatar, setUserAvatar] = React.useState(''); */
 
   React.useEffect(() => {
     api
@@ -117,14 +111,20 @@ export default function App() {
   const handleUpdateUser = ({ name, about }) => {
     api
       .setUserInfo({ name, about })
-      .then((user) => setCurrentUser(user))
+      .then((user) => {
+        setCurrentUser(user);
+        closeAllPopups();
+      })
       .catch((err) => console.log(err));
   };
 
   const handleUpdateAvatar = (url) => {
     api
       .setAvatarLink(url)
-      .then((user) => setCurrentUser(user))
+      .then((user) => {
+        setCurrentUser(user);
+        closeAllPopups();
+      })
       .catch((err) => console.log(err));
   };
 

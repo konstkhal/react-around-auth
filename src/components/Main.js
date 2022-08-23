@@ -1,12 +1,9 @@
 /** @format */
 
 import React, { useContext } from 'react';
-
 import { UserContext } from '../contexts/CurrentUserContext';
-//import profile__photo from '../images/image.png';
 import profileChangeImage from '../images/pen.svg';
 import linkAddImage from '../images/Vector-1.svg';
-//import { api } from '../utils/api.js';
 import Card from './Card.js';
 
 function Main({
@@ -15,7 +12,7 @@ function Main({
   onAddPlaceClick,
   onEditAvatarClick,
   onCardClick,
-  onDeleteCardClick, //   onCardDelete,
+  onCardDelete, //   onCardDelete,
   onCardLike,
 }) {
   const currentUser = useContext(UserContext);
@@ -33,7 +30,7 @@ function Main({
           <button
             type='button'
             className='button profile__link-change profile__link-change_place_image'
-            onClick={() => onEditAvatarClick()}>
+            onClick={onEditAvatarClick}>
             <img
               src={profileChangeImage}
               className='profile__image-change profile__image-change_place_image'
@@ -82,7 +79,7 @@ function Main({
               key={card._id}
               card={card}
               onCardClick={onCardClick}
-              onDeleteCardClick={onDeleteCardClick}
+              onCardDelete={onCardDelete}
               onCardLike={onCardLike}
             />
           ))}

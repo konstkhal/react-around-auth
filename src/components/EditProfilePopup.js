@@ -35,7 +35,6 @@ export default function EditProfilePopup({
   const handleSubmit = (event) => {
     event.preventDefault();
     onUpdateUser({ name, about: description });
-    onClose();
   };
 
   return (
@@ -48,7 +47,6 @@ export default function EditProfilePopup({
       <input
         id='name-input'
         onChange={handleNameChange}
-        /* defaultValue='' */
         value={name}
         placeholder='Input name'
         type='text'
@@ -65,7 +63,6 @@ export default function EditProfilePopup({
       <input
         id='role-input'
         onChange={handleRoleChange}
-        /* defaultValue='' */
         value={description}
         type='text'
         className='form__input form__input_type_role'
