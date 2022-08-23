@@ -1,4 +1,15 @@
-/** @format */
+/**
+ * @format done by Prettier
+ * @function Main returns Main element
+ * @props array:
+ * cards - array containing all of cards to be rendered
+ * onEditProfileClick - handler @function on edit profile button click event
+ * onAddPlaceClick - handler @function on add place button click event
+ * onEditAvatarClick - handler @function on edit avatar button click event
+ * onCardClick - handler @function on card click event
+ * onCardDelete - handler @function on card delete button click event
+ * onCardLike - handler @function on card like button click event
+ */
 
 import React, { useContext } from 'react';
 import { UserContext } from '../contexts/CurrentUserContext';

@@ -1,4 +1,12 @@
-/** @format */
+/**
+ * @format done by Prettier
+ * @function AddPlacePopup
+ * @props:
+ * isOpen - state @variable about open / close AddPlacePopup condition
+ * onClose - handler @function closing all of popups on page
+ * onAddPlaceSubmit - handler @function on submitting respective form
+ *
+ */
 
 import PopupWithForm from './PopupWithForm';
 import React from 'react';

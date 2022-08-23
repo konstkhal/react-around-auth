@@ -1,4 +1,12 @@
-/** @format */
+/**
+ * @format done by Prettier
+ * @function ImagePopup
+ * @props:
+ * card - state @variable about open / close ImagePopup condition.
+ * Used to choose current card to be showed in popup
+ * onClose - handler @function closing all of popups on page
+ *
+ */
 
 import React from 'react';
 

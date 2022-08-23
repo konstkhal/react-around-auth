@@ -1,4 +1,13 @@
-/** @format */
+/**
+ * @format done by Prettier
+ * @function EditProfilePopup
+ * @props:
+ * isOpen - state @variable about open / close EditProfilePopup condition
+ * onClose - handler @function closing all of popups on page
+ * onUpdateUser - handler @function on submitting respective form
+ *
+ */
+
 import PopupWithForm from './PopupWithForm';
 import React from 'react';
 import { UserContext } from '../contexts/CurrentUserContext';

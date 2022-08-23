@@ -1,4 +1,8 @@
-/** @format */
+/**
+ * @format done by Prettier
+ * React @component App.js
+ *
+ */
 
 import React from 'react';
 import { UserContext } from '../contexts/CurrentUserContext';
@@ -15,6 +19,24 @@ import PopupWithForm from './PopupWithForm';
 export default function App() {
   const [currentUser, setCurrentUser] = React.useState({}); //nameUser, avatarUser,aboutUser
   const [cards, setCards] = React.useState([]);
+  const [
+    isEditProfilePopupOpen,
+    setIsEditProfilePopupOpen,
+  ] = React.useState(false);
+
+  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] =
+    React.useState(false);
+
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] =
+    React.useState(false);
+
+  const [
+    isConfirmDeletePopupOpen,
+    setIsConfirmDeletePopupOpen,
+  ] = React.useState(false);
+
+  const [selectedCard, setSelectedCard] =
+    React.useState(undefined);
 
   const handleAddPlaceSubmit = ({ name, link }) => {
     api
@@ -67,25 +89,6 @@ export default function App() {
       })
       .catch((err) => console.log(err));
   }, []);
-
-  const [
-    isEditProfilePopupOpen,
-    setIsEditProfilePopupOpen,
-  ] = React.useState(false);
-
-  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] =
-    React.useState(false);
-
-  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] =
-    React.useState(false);
-
-  const [
-    isConfirmDeletePopupOpen,
-    setIsConfirmDeletePopupOpen,
-  ] = React.useState(false);
-
-  const [selectedCard, setSelectedCard] =
-    React.useState(undefined);
 
   const handleEditProfileClick = () =>
     setIsEditProfilePopupOpen(true);

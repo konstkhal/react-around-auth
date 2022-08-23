@@ -7,12 +7,16 @@ export default function EditAvatarPopup({
   onClose,
   onUpdateAvatar,
 }) {
-  const imageInput = React.createRef();
+  const imageInput = React.useRef();
 
   const handleSubmit = (event) => {
     event.preventDefault();
     onUpdateAvatar(imageInput.current.value);
   };
+
+  React.useEffect(() => {
+    imageInput.current.value = '';
+  }, [isOpen, imageInput]);
 
   return (
     <PopupWithForm

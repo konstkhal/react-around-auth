@@ -1,4 +1,15 @@
-/** @format */
+/**
+ * @format done by Prettier
+ * @function Card
+ * @props:
+ * card - state @variable about open / close AddPlacePopup condition
+ * onCardClick -  handler @function on card click event. Opens respective full image *
+ * onCardDelete -  handler @function on card delete button event.
+ * Initiates respective api call via api layer.
+ * onCardLike - handler @function on card like button click event.
+ * Initiates respective api call via api layer.
+ *
+ */
 
 import React from 'react';
 import { UserContext } from '../contexts/CurrentUserContext';

@@ -1,4 +1,8 @@
-/** @format */
+/**
+ * @format done by Prettier
+ * @function Footer returns Footer element
+ *
+ */
 
 const Footer = () => {
   return (
