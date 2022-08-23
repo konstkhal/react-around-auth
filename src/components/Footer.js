@@ -1,7 +1,5 @@
 /** @format */
 
-//import logo from "../images/Vector__header.svg";
-
 const Footer = () => {
   return (
     <footer className='footer'>

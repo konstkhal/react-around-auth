@@ -12,7 +12,7 @@ function Main({
   onAddPlaceClick,
   onEditAvatarClick,
   onCardClick,
-  onCardDelete, //   onCardDelete,
+  onCardDelete,
   onCardLike,
 }) {
   const currentUser = useContext(UserContext);
