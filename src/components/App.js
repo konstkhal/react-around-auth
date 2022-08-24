@@ -104,7 +104,7 @@ export default function App() {
     setIsAddPlacePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
     setIsConfirmDeletePopupOpen(false);
-    setSelectedCard(undefined);
+    setSelectedCard(null);
   };
 
   const handleCardClick = (card) => {
