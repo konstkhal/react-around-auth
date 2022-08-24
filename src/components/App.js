@@ -36,7 +36,7 @@ export default function App() {
   ] = React.useState(false);
 
   const [selectedCard, setSelectedCard] =
-    React.useState(undefined);
+    React.useState(null);
 
   const handleAddPlaceSubmit = ({ name, link }) => {
     api
@@ -58,7 +58,7 @@ export default function App() {
               ? newCard
               : currentCard
           )
-        );
+        ).catch((err) => console.log(err));
       });
   }
 
