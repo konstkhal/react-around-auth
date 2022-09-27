@@ -1,0 +1,9 @@
+{
+    "conventionalCommits.scopes": [
+      "likes",
+      "delete",
+      "settings",
+      "profile",
+      "popup"
+    ]
+}
