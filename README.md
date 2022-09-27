@@ -1,5 +1,4 @@
-# Around React Project
-
+# React Around Auth Project
 ## React App built with React Framework
 
 [- FrontEnd Developer (Konstantin Khaletsky) Linked In]("https://linkedin.com/in/konstkhal/")

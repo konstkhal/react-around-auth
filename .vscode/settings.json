@@ -4,6 +4,7 @@
       "delete",
       "settings",
       "profile",
-      "popup"
+      "popup",
+      "Authorization&Registration"
     ]
 }
