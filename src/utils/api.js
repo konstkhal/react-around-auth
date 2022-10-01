@@ -1,6 +1,6 @@
 /** @format */
 
-class Api {
+export class Api {
   constructor({ baseUrl, headers }) {
     this._baseUrl = baseUrl;
     this._headers = headers;
@@ -108,4 +108,5 @@ const api = new Api({
   },
 });
 
-export default api;
+
+export { api, Api as Authorization};
