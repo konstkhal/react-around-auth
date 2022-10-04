@@ -11,7 +11,9 @@ class Auth extends Authorization {
   })
   .then((res) => res.json())
   .then((data) => {
+    if (data.error) throw new Error(data.error);
     if (data.message) throw new Error(data.message);
+    return data;
   });
 }
 
@@ -23,8 +25,8 @@ class Auth extends Authorization {
   })
   .then((res) => res.json())
   .then((data) => {
-    if (!data.token) throw new Error(data.message);
-    return data;
+   if (!data.token) throw new Error(data.message);
+      return data;
   });
 };
 
