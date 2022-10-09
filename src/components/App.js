@@ -53,16 +53,16 @@ export default function App() {
     api
       .handleLikeCardStatus(card._id, isLiked)
       .then((newCard) => {
-
         setCards((stateCards) =>
           stateCards.map((currentCard) =>
-          currentCard._id === card._id
+                currentCard._id === card._id
               ? newCard
               : currentCard
           )
         )
+      }
+      )
       .catch((err) => console.log(err));
-      });
   }
 
   function handleCardDelete(cardId) {
