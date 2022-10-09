@@ -43,12 +43,14 @@ Project Link: [https://konstkhal.github.io/around-react/](https://konstkhal.gith
 
 ---
 # ToDo
-🗸 Make sure to add the Main component in the project.
-🗸 Make sure to add the Footer component in the project.
-🗸 Make sure to add the PopupWithForm component in the project.
-🗸 Make sure to add the ImagePopup component in the project.
-🗸 Make sure to add the Card component in the project.
-🗸 Make sure to export the Api class.
+[x] Add the project's name to Readme.
+[x] Make sure to add the Main component in the project.
+[x] Make sure to add the Footer component in the project.
+[x] Make sure to add the PopupWithForm component in the project.
+[x] Make sure to add the ImagePopup component in the project.
+[x] Make sure to add the Card component in the project.
+[x] Make sure to export the Api class.
+[ ] Try built in private and static JS methods
 
 # Getting Started with Create React App
 
