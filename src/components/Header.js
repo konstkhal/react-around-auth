@@ -5,48 +5,90 @@
  *
  */
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom';
 import logo from '../images/Vector__header.svg';
-import {UserContext} from '../contexts/CurrentUserContext';
+import { UserContext } from '../contexts/CurrentUserContext';
 
 /* import HeaderNav from './HeaderNav'; */
 
-export default function Header ({ isLoggedIn, email, handleLogout }) {
-  const currentUser = React.useContext(UserContext);
-  const currentPath = useLocation().pathname;
+export default function Header({
+	isLoggedIn,
+	handleLogout,
+}) {
+	const currentUser = React.useContext(UserContext);
+	const currentPath = useLocation().pathname;
 
-  return (
-    <header className='header'>
-   {/*    <Link to="/"> } // Need to know, why this does not work */}
+	return (
+		<header className='header'>
+			{/*    <Link to="/"> } // Need to know, why this does not work */}
+			<img
+				src={logo}
+				className='header__logo'
+				alt='Logo around the us - Just text'
+			/>
+			{/*       </Link> */}
+
+			<div>
+				{isLoggedIn ? (
+					<div className='header__container'>
+						<p className='header__email'>
+							konstak@yandex.ru {/* для тестов */}
+							{currentUser.email}
+						</p>
+						<div
+							className='header__text'
+							onClick={handleLogout}
+						>
+							Log Out
+						</div>
+					</div>
+				) : (
+					<div>
+						<Link
+							to={
+								currentPath.pathname === '/signin'
+									? '/signup'
+									: '/signin'
+							}
+							className='header__link'
+						>
+							{currentPath.pathname === '/signin'
+								? 'Sign up'
+								: 'Sign in'}
+						</Link>
+					</div>
+				)}
+			</div>
+		</header>
+	);
+}
+
+/*
+  <header className="header">
       <img
         src={logo}
-        className='header__logo'
-        alt='Logo around the us - Just text'
+        alt="Around the U.S logo"
+        className="header__logo"
+        id="logo"
       />
-{/*       </Link> */}
-{/*       <HeaderNav {...props} /> */}
 
-<div>
-        {isLoggedIn ? (
+      <div>
+        {loggedIn ? (
           <div className="header__container">
-            <p className="header__email">{currentUser.email}</p>
-            <div className='header__text' onClick={handleLogout}>
+            <p className="header__email">{email}</p>
+            <div className='header__text' onClick={signOut}>
               Log Out
             </div>
           </div>
         ) : (
             <div>
-              <Link to={currentPath.pathname === '/signin' ? '/signup' : '/signin'} className='header__link'>
-              {currentPath.pathname === '/signin' ? 'Sign up' : 'Sign in'}
+              <Link to={location.pathname === '/signin' ? '/signup' : '/signin'} className='header__link'>
+              {location.pathname === '/signin' ? 'Sign up' : 'Sign in'}
               </Link>
             </div>
         )}
       </div>
-
-
-
     </header>
-  );
-};
 
 
+*/
