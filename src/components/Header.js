@@ -31,7 +31,6 @@ export default function Header({
 			{isLoggedIn ? (
 				<div className='header__container'>
 					<p className='header__email'>
-						konstak@yandex.ru {/* для тестов */}
 						{currentUser.email}
 					</p>
 					<div
