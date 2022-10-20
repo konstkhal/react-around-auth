@@ -6,3 +6,10 @@
 	padding: 0;
 	text-decoration: none;
 }
+
+@media screen and (max-width: 860px) {
+	.header__link {
+		max-width: 126px;
+		margin-right: calc((100% / 2) - 124px);
+	}
+}

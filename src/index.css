@@ -74,3 +74,7 @@
 @import url(./blocks/popup/__window/_type/popup__window_type_preview.css);
 @import url(./blocks/photo-grid/__like-button/_active/photo-grid__like-button_active.css);
 @import url(./blocks/form-page/__input-error/_active/form-page__input-error_active.css);
+
+/* body * {
+	border: 1px solid red;
+} */

@@ -5,6 +5,9 @@
 	line-height: 1.2;
 	padding: 0;
 	text-decoration: none;
+
+	max-width: 173px;
+	width: calc(100% * 800 / 173);
 }
 
 .header__text:hover {

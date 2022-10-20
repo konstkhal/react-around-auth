@@ -28,37 +28,33 @@ export default function Header({
 			/>
 			{/*       </Link> */}
 
-			<div>
-				{isLoggedIn ? (
-					<div className='header__container'>
-						<p className='header__email'>
-							konstak@yandex.ru {/* для тестов */}
-							{currentUser.email}
-						</p>
-						<div
-							className='header__text'
-							onClick={handleLogout}
-						>
-							Log Out
-						</div>
+			{isLoggedIn ? (
+				<div className='header__container'>
+					<p className='header__email'>
+						konstak@yandex.ru {/* для тестов */}
+						{currentUser.email}
+					</p>
+					<div
+						className='header__text'
+						onClick={handleLogout}
+					>
+						Log Out
 					</div>
-				) : (
-					<div>
-						<Link
-							to={
-								currentPath.pathname === '/signin'
-									? '/signup'
-									: '/signin'
-							}
-							className='header__link'
-						>
-							{currentPath.pathname === '/signin'
-								? 'Sign up'
-								: 'Sign in'}
-						</Link>
-					</div>
-				)}
-			</div>
+				</div>
+			) : (
+				<Link
+					to={
+						currentPath.pathname === '/signin'
+							? '/signup'
+							: '/signin'
+					}
+					className='header__link'
+				>
+					{currentPath.pathname === '/signin'
+						? 'Sign up'
+						: 'Sign in'}
+				</Link>
+			)}
 		</header>
 	);
 }
