@@ -5,6 +5,7 @@
  */
 
 import React from 'react';
+import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import { UserContext } from '../contexts/CurrentUserContext';
 import {api} from '../utils/api';
 import AddPlacePopup from './AddPlacePopup';
@@ -16,6 +17,12 @@ import ImagePopup from './ImagePopup';
 import Main from './Main';
 import PopupWithForm from './PopupWithForm';
 //import Card from './Card';
+import ProtectedRoute from './ProtectedRoute';
+import InfoTooltip from './InfoTooltip';
+//import UserDetails from './UserDetails';
+import { auth } from '../utils/auth';
+import Register from './Register';
+import Login from './Login';
 
 export default function App() {
   const [currentUser, setCurrentUser] = React.useState({}); //nameUser, avatarUser,aboutUser
@@ -35,6 +42,17 @@ export default function App() {
     isConfirmDeletePopupOpen,
     setIsConfirmDeletePopupOpen,
   ] = React.useState(false);
+
+  const [isInfoTooltipOpen, setIsInfoTooltipOpen] = React.useState(false);
+
+
+  //const [isAuthOkPopupOpen, setIsAuthOkPopupOpen] = React.useState(false);
+  const [isSuccess, setIsSuccess] = React.useState(true);
+  //const [isAuthErrPopupOpen, setIsAuthErrPopupOpen] = React.useState(false);
+  const [isUserDetailsOpen, setIsUserDetailsOpen] = React.useState(false);
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(false);
+  const navigate = useNavigate();
 
   const [selectedCard, setSelectedCard] =
     React.useState(null);
@@ -134,20 +152,91 @@ export default function App() {
       .catch((err) => console.log(err));
   };
 
+  const handleNewUserSubmit = ({ email, password }) => {
+    setIsLoading(true);
+    auth.register({ email, password })
+      .then((user) => {
+
+        if (user.data._id) {
+          setIsSuccess(true);
+          setTimeout(() => {
+            navigate('/signin');
+            setIsInfoTooltipOpen(false);
+          }, 3000);
+        } else {
+          setIsSuccess(false);
+        }
+      })
+      .catch((err) => {
+        setIsSuccess(false);
+        setIsInfoTooltipOpen(true);
+      })
+      .finally(() => setIsLoading(false));
+  };
+
+  const handleLogin = ({ email, password }) => {
+    setIsLoading(true);
+    auth.authenticate({ email, password })
+      .then((user) => {
+           localStorage.setItem('jwt', user.token);
+        setIsInfoTooltipOpen(true);
+        setIsLoggedIn(true);
+        setCurrentUser({ ...currentUser, email });
+        navigate('/');
+      })
+      .catch((err) => {
+        console.log(err);
+        setIsInfoTooltipOpen(true);
+      })
+      .finally(() => setIsLoading(false));
+  };
+
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    setIsUserDetailsOpen(false);
+    localStorage.removeItem('jwt');
+  };
+
+  const handleMenuClick = () => {
+    setIsUserDetailsOpen(!isUserDetailsOpen);
+  };
+
+
+
   return (
     <UserContext.Provider value={currentUser}>
       <div className='App page'>
-        <Header />
+        <InfoTooltip isOpen={isInfoTooltipOpen} onClose={closeAllPopups} IsSuccess={isSuccess} />
 
-        <Main
-          onEditProfileClick={handleEditProfileClick}
-          onAddPlaceClick={handleAddPlaceClick}
-          onEditAvatarClick={handleEditAvatarClick}
-          onCardClick={handleCardClick}
-          cards={cards}
-          onCardLike={handleCardLike}
-          onCardDelete={handleCardDelete}
+        <Header
+             isDropDownOpen={isUserDetailsOpen}
+             handleMenuClick={handleMenuClick}
+             handleLogout={handleLogout}
+             isLoggedIn={isLoggedIn}
         />
+
+        <Routes>
+          <Route path="/signin" element={<Login isLoading={isLoading} onSubmit={handleLogin} isLoggedIn />} />
+          <Route path="/signup" element={<Register onSubmit={handleNewUserSubmit} isLoading={isLoading} isLoggedIn />} />
+          <Route
+            path="/"
+            element={
+              <ProtectedRoute redirectPath="/signin" isLoggedIn={isLoggedIn} >
+                <Main
+                  onEditProfileClick={handleEditProfileClick}
+                  onAddPlaceClick={handleAddPlaceClick}
+                  onEditAvatarClick={handleEditAvatarClick}
+                  onCardClick={handleCardClick}
+                  cards={cards}
+                  onCardLike={handleCardLike}
+                  onCardDelete={handleCardDelete}
+                />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
 
         <Footer />
 

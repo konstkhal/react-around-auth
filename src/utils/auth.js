@@ -41,8 +41,7 @@ class Auth extends Authorization {
       if (!data) throw new Error(data.message);
       return data;
     });
-};
-}
+  }}
 
 export const auth = new Auth ({
   baseUrl: 'https://register.nomoreparties.co',
