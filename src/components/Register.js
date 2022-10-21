@@ -51,7 +51,7 @@ export default function Register({
 			<h2 className='form-page__title'>${title}</h2>
 			<form
 				onSubmit={handleSubmit}
-				className={`form-page__form`}
+				className='form form-page__form'
 				name='register'
 			>
 				<input
@@ -60,7 +60,7 @@ export default function Register({
 					id='email-input'
 					autoComplete='username'
 					type='email'
-					className={`form-page__input`}
+					className='form__input form-page__input'
 					name='emailInput'
 					required
 					minLength='2'
@@ -80,7 +80,7 @@ export default function Register({
 					id='password-input'
 					autoComplete='current-password'
 					type='password'
-					className={`form-page__input`}
+					className='form__input  form-page__input'
 					name='passwordInput'
 					required
 					minLength='2'
