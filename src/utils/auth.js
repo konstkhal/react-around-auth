@@ -1,18 +1,15 @@
 import { Authorization } from './api';
 
 class Auth extends Authorization {
-	#checkReponseStatus = (res) => {
-		if (!res.error) {
-			//throw new Error(JSON.stringify(res));
-			return res;
-			/* 	return res.text()
-      .then((text) => {
-				throw new Error(text);
-			}); */
+	/* #checkReponseStatus = (res) => {
+
+		if (res.ok) {
+			console.log(res.ok);
+			return res.json();
 		} else {
 			throw new Error(JSON.stringify(res));
 		}
-	};
+	}; */
 
 	register = (user) => {
 		return this._customFetch(`${this._baseUrl}/signup`, {
@@ -22,7 +19,7 @@ class Auth extends Authorization {
 				password: user.password,
 				email: user.email,
 			}),
-		}).then((res) => this.#checkReponseStatus(res));
+		}); /* .then((res) => this.#checkReponseStatus(res)); */
 		/*
 
 			.then((data) => {
@@ -40,7 +37,10 @@ class Auth extends Authorization {
 				password: user.password,
 				email: user.email,
 			}),
-		}).then((res) => this.#checkReponseStatus(res));
+		}) /* .then((res) => {
+			console.log(res.statusText);
+			this.#checkReponseStatus(res);
+		}) */;
 		/*
 			.then((res) => res.json())
 			.then((data) => {
@@ -57,7 +57,7 @@ class Auth extends Authorization {
 		return this._customFetch(`${this._baseUrl}/users/me`, {
 			headers: this._headers,
 			method: 'GET',
-		}).then((res) => this.#checkReponseStatus(res));
+		}); /* .then((res) => this.#checkReponseStatus(res)); */
 		/* 			.then((res) => res.json())
 			.then((data) => {
 				if (!data) throw new Error(data.message);
