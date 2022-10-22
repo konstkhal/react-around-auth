@@ -162,7 +162,7 @@ export default function App() {
 				}
 			})
 			.catch((err) => console.log(err));
-	}, []);
+	}, [navigate]);
 
 	const handleCardClick = (card) => {
 		setSelectedCard(card);
