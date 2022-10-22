@@ -131,6 +131,7 @@ export default function App() {
 		setIsEditAvatarPopupOpen(false);
 		setIsConfirmDeletePopupOpen(false);
 		setSelectedCard(null);
+		setIsInfoTooltipOpen(false);
 	};
 
 	const handleCardClick = (card) => {

@@ -1,26 +1,55 @@
 import accept from '../images/accept.png';
 import decline from '../images/decline.png';
 
-export default function InfoTooltip
-({
-  onPopupClick,
-  isOpen,
-  onClose,
-  isSuccessful,
-})
-  {
-
-  return (
-    <div onClick={onPopupClick} className={`popup popup_type_info ${isOpen ? 'popup_active' : ''}`}>
-      <div className="popup__window popup__window_type_info">
-        <button type="button" className="popup__close-button" aria-label="close" onClick={onClose}></button>
-        <img
-          className="popup__auth-image"
-          alt={isSuccessful ? 'Registration succefull - Check sign in black color' : 'Registration failed - cross sign in red color'}
-          src={isSuccessful ? accept : decline}
-        ></img>
-        <h2 className="popup__title">{isSuccessful ? 'Success! You have now been registered.' : 'Oops, something went wrong! Please try again.'}</h2>
-      </div>
-    </div>
-  );
+export default function InfoToolTip({
+	isOpen,
+	onClose,
+	isSuccess,
+}) {
+	return (
+		<div
+			className={`popup popup_type_tooltip ${
+				isOpen ? 'popup_open' : ''
+			}`}
+		>
+			<div className='popup__content'>
+				<button
+					type='button'
+					className='popup__close'
+					onClick={onClose}
+				/>
+				{isSuccess ? (
+					<div>
+						<img
+							className='popup__icon'
+							src={accept}
+							alt={
+								isSuccess
+									? 'Registration succefull - Check sign in black color'
+									: 'Registration failed - cross sign in red color'
+							}
+						/>
+						<p className='popup__status-message'>
+							Success! You have been registered.
+						</p>
+					</div>
+				) : (
+					<div>
+						<img
+							className='popup__icon'
+							src={decline}
+							alt={
+								isSuccess
+									? 'Registration succefull - Check sign in black color'
+									: 'Registration failed - cross sign in red color'
+							}
+						/>
+						<p className='popup__status-message'>
+							Oops, something went wrong! Please try again.
+						</p>
+					</div>
+				)}
+			</div>
+		</div>
+	);
 }
