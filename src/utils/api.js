@@ -1,6 +1,6 @@
 /** @format */
 
-class Api {
+export class Api {
 	constructor({ baseUrl, headers }) {
 		this._baseUrl = baseUrl;
 		this._headers = headers;
@@ -67,25 +67,6 @@ class Api {
 			}
 		);
 	}
-	/*   likeCard(cardId) {
-    return this._customFetch(
-      `${this._baseUrl}/cards/likes/${cardId}`,
-      {
-        headers: this._headers,
-        method: 'PUT',
-      }
-    );
-  }
-
-  disLikeCard(cardId) {
-    return this._customFetch(
-      `${this._baseUrl}/cards/likes/${cardId}`,
-      {
-        headers: this._headers,
-        method: 'DELETE',
-      }
-    );
-  } */
 
 	handleLikeCardStatus(cardId, isLiked) {
 		return this._customFetch(
@@ -96,16 +77,12 @@ class Api {
 			}
 		);
 	}
-
-	// other methods for working with the API
 }
 
-const api = new Api({
+export const api = new Api({
 	baseUrl: 'https://around.nomoreparties.co/v1/group-12',
 	headers: {
 		authorization: 'cfbd7707-a110-44ae-8aa8-630296f53c66',
 		'Content-Type': 'application/json',
 	},
 });
-
-export { api, Api };
