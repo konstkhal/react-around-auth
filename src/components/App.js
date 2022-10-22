@@ -24,6 +24,7 @@ import PopupWithForm from './PopupWithForm';
 //import Card from './Card';
 import ProtectedRoute from './ProtectedRoute';
 import InfoTooltip from './InfoTooltip';
+import decline from '../images/decline.png';
 //import UserDetails from './UserDetails';
 import { auth } from '../utils/auth';
 import Register from './Register';
@@ -64,10 +65,12 @@ export default function App() {
 		React.useState(null);
 
 	const handleAddPlaceSubmit = ({ name, link }) => {
+		setIsLoading(true);
 		api
 			.createCard({ name, link })
 			.then((card) => setCards([card, ...cards]))
-			.catch((err) => console.log(err));
+			.catch((err) => console.log(err))
+			.finally(() => setIsLoading(false));
 	};
 
 	function handleCardLike(card, isLiked) {
@@ -102,19 +105,21 @@ export default function App() {
 	}
 
 	React.useEffect(() => {
-		api
-			.init()
-			.then(([cardData, userData]) => {
-				setCards(cardData);
-				setCurrentUser({
-					name: userData.name,
-					avatar: userData.avatar,
-					about: userData.about,
-					_id: userData._id,
-				});
-			})
-			.catch((err) => console.log(err));
-	}, []);
+		//первый юзэффект
+		isLoggedIn &&
+			api
+				.init()
+				.then(([cardData, userData]) => {
+					setCards(cardData);
+					setCurrentUser({
+						name: userData.name,
+						avatar: userData.avatar,
+						about: userData.about,
+						_id: userData._id,
+					});
+				})
+				.catch((err) => console.log(err));
+	}, [isLoggedIn]);
 
 	const handleEditProfileClick = () =>
 		setIsEditProfilePopupOpen(true);
@@ -139,23 +144,27 @@ export default function App() {
 	};
 
 	const handleUpdateUser = ({ name, about }) => {
+		setIsLoading(true);
 		api
 			.setUserInfo({ name, about })
 			.then((user) => {
 				setCurrentUser(user);
 				closeAllPopups();
 			})
-			.catch((err) => console.log(err));
+			.catch((err) => console.log(err))
+			.finally(() => setIsLoading(false));
 	};
 
 	const handleUpdateAvatar = (url) => {
+		setIsLoading(true);
 		api
 			.setAvatarLink(url)
 			.then((user) => {
 				setCurrentUser(user);
 				closeAllPopups();
 			})
-			.catch((err) => console.log(err));
+			.catch((err) => console.log(err))
+			.finally(() => setIsLoading(false));
 	};
 
 	const handleNewUserSubmit = ({ email, password }) => {
@@ -222,6 +231,7 @@ export default function App() {
 					handleMenuClick={handleMenuClick}
 					handleLogout={handleLogout}
 					isLoggedIn={isLoggedIn}
+					email={currentUser.email}
 				/>
 
 				<Routes>
