@@ -9,13 +9,13 @@ export default function InfoToolTip({
 	return (
 		<div
 			className={`popup popup_type_tooltip ${
-				isOpen ? 'popup_open' : ''
+				isOpen ? 'popup_opened' : ''
 			}`}
 		>
-			<div className='popup__content'>
+			<div className='popup__window'>
 				<button
 					type='button'
-					className='popup__close'
+					className='popup__close-button popup__close-button_tooltip'
 					onClick={onClose}
 				/>
 				{isSuccess ? (

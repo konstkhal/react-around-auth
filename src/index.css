@@ -64,6 +64,7 @@
 @import url(./blocks/popup/__window/popup__window.css);
 @import url(./blocks/profile/__photo/profile__photo.css);
 @import url(./blocks/profile/__role/profile__role.css);
+@import url(./blocks/popup/__status-message/popup__status-message.css);
 
 /*Modifiers*/
 @import url(./blocks/form/__input-error/_visible/form__input-error_visible.css);

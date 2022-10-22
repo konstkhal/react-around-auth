@@ -7,22 +7,20 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import logo from '../images/Vector__header.svg';
-/* import { UserContext } from '../contexts/CurrentUserContext'; */
-
+import { UserContext } from '../contexts/CurrentUserContext';
 /* import HeaderNav from './HeaderNav'; */
 
 export default function Header({
 	isLoggedIn,
 	handleLogout,
-	email,
 }) {
-	/* 	const currentUser = React.useContext(UserContext); */
+	const currentUser = React.useContext(UserContext);
 	const currentPath = useLocation().pathname;
-	console.log('isLoggedIn: ' + isLoggedIn);
+	//console.log('isLoggedIn: ' + isLoggedIn);
 	/* console.log(
 		'currentUser: ' + JSON.stringify(currentUser)
 	); */
-	console.log('email: ' + email);
+	//console.log('currentUser.email: ' + currentUser.email);
 
 	return (
 		<header className='header'>
@@ -36,7 +34,9 @@ export default function Header({
 
 			{isLoggedIn ? (
 				<div className='header__container'>
-					<p className='header__email'>{email}</p>
+					<p className='header__email'>
+						{currentUser.email}
+					</p>
 					<div
 						className='header__text'
 						onClick={handleLogout}

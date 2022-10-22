@@ -105,18 +105,12 @@ export default function App() {
 	}
 
 	React.useEffect(() => {
-		//первый юзэффект
 		isLoggedIn &&
 			api
 				.init()
 				.then(([cardData, userData]) => {
 					setCards(cardData);
-					setCurrentUser({
-						name: userData.name,
-						avatar: userData.avatar,
-						about: userData.about,
-						_id: userData._id,
-					});
+					setCurrentUser({ ...currentUser, ...userData });
 				})
 				.catch((err) => console.log(err));
 	}, [isLoggedIn]);
@@ -139,6 +133,37 @@ export default function App() {
 		setIsInfoTooltipOpen(false);
 	};
 
+	React.useEffect(() => {
+		const getUserInfoFromAPI = () => {
+			return api.init();
+		};
+		const getUserInfoFromToken = () => {
+			const jwt = localStorage.getItem('jwt');
+			if (jwt) return auth.validateToken(jwt);
+		};
+
+		Promise.allSettled([
+			getUserInfoFromAPI(),
+			getUserInfoFromToken(),
+		])
+			.then((values) => {
+				const [cards, userFromAPI] = values[0].value; // handle API info
+				const userFromToken = values[1].value
+					? values[1].value.data
+					: null; // handle localstorage data
+				setCards(cards);
+				setCurrentUser({
+					...userFromToken,
+					...userFromAPI,
+				});
+				if (userFromToken) {
+					setIsLoggedIn(true);
+					navigate('/');
+				}
+			})
+			.catch((err) => console.log(err));
+	});
+
 	const handleCardClick = (card) => {
 		setSelectedCard(card);
 	};
@@ -148,7 +173,7 @@ export default function App() {
 		api
 			.setUserInfo({ name, about })
 			.then((user) => {
-				setCurrentUser(user);
+				setCurrentUser({ ...currentUser, ...user });
 				closeAllPopups();
 			})
 			.catch((err) => console.log(err))
@@ -160,7 +185,7 @@ export default function App() {
 		api
 			.setAvatarLink(url)
 			.then((user) => {
-				setCurrentUser(user);
+				setCurrentUser({ ...currentUser, ...user });
 				closeAllPopups();
 			})
 			.catch((err) => console.log(err))
