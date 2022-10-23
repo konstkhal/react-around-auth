@@ -16,6 +16,7 @@ export default function EditProfilePopup({
 	isOpen,
 	onClose,
 	onUpdateUser,
+	isLoading,
 }) {
 	const [name, setName] = React.useState('');
 	const [description, setDescription] = React.useState('');
@@ -53,6 +54,7 @@ export default function EditProfilePopup({
 			title='Edit profile'
 			name='editProfile'
 			onSubmit={handleSubmit}
+			isLoading={isLoading}
 		>
 			<input
 				id='name-input'

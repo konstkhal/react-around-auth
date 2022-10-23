@@ -68,7 +68,10 @@ export default function App() {
 		setIsLoading(true);
 		api
 			.createCard({ name, link })
-			.then((card) => setCards([card, ...cards]))
+			.then((card) => {
+				setCards([card, ...cards]);
+				closeAllPopups();
+			})
 			.catch((err) => console.log(err))
 			.finally(() => setIsLoading(false));
 	};
@@ -104,7 +107,7 @@ export default function App() {
 			.catch((err) => console.log(err));
 	}
 
-	React.useEffect(() => {
+	/* 	React.useEffect(() => {
 		isLoggedIn &&
 			api
 				.init()
@@ -113,7 +116,7 @@ export default function App() {
 					setCurrentUser({ ...currentUser, ...userData });
 				})
 				.catch((err) => console.log(err));
-	}, [isLoggedIn]);
+	}, []); */
 
 	const handleEditProfileClick = () =>
 		setIsEditProfilePopupOpen(true);
@@ -209,9 +212,11 @@ export default function App() {
 			})
 			.catch((err) => {
 				setIsSuccess(false);
-				setIsInfoTooltipOpen(true);
 			})
-			.finally(() => setIsLoading(false));
+			.finally(() => {
+				setIsLoading(false);
+				setIsInfoTooltipOpen(true);
+			});
 	};
 
 	const handleLogin = ({ email, password }) => {
@@ -220,16 +225,18 @@ export default function App() {
 			.authenticate({ email, password })
 			.then((user) => {
 				localStorage.setItem('jwt', user.token);
-				setIsInfoTooltipOpen(true);
+				/* 				setIsInfoTooltipOpen(true); */
 				setIsLoggedIn(true);
 				setCurrentUser({ ...currentUser, email });
 				navigate('/');
 			})
 			.catch((err) => {
 				console.log(err);
-				setIsInfoTooltipOpen(true);
 			})
-			.finally(() => setIsLoading(false));
+			.finally(() => {
+				setIsLoading(false);
+				setIsInfoTooltipOpen(true);
+			});
 	};
 
 	const handleLogout = () => {
@@ -315,6 +322,7 @@ export default function App() {
 					isOpen={isEditProfilePopupOpen}
 					onClose={closeAllPopups}
 					onUpdateUser={handleUpdateUser}
+					isLoading={isLoading}
 				/>
 
 				<PopupWithForm
@@ -331,12 +339,14 @@ export default function App() {
 					onClose={closeAllPopups}
 					title='New place'
 					name='namePlace'
+					isLoading={isLoading}
 				/>
 
 				<EditAvatarPopup
 					onUpdateAvatar={handleUpdateAvatar}
 					isOpen={isEditAvatarPopupOpen}
 					onClose={closeAllPopups}
+					isLoading={isLoading}
 				/>
 
 				<ImagePopup
