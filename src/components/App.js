@@ -24,7 +24,8 @@ import PopupWithForm from './PopupWithForm';
 //import Card from './Card';
 import ProtectedRoute from './ProtectedRoute';
 import InfoTooltip from './InfoTooltip';
-import decline from '../images/decline.png';
+/* import decline from '../images/decline.png';
+import accept from '../images/accept.png'; */
 //import UserDetails from './UserDetails';
 import { auth } from '../utils/auth';
 import Register from './Register';
@@ -235,7 +236,6 @@ export default function App() {
 			})
 			.finally(() => {
 				setIsLoading(false);
-				setIsInfoTooltipOpen(true);
 			});
 	};
 

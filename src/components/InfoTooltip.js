@@ -41,7 +41,7 @@ export default function InfoToolTip({
 							alt={
 								isSuccess
 									? 'Registration succefull - Check sign in black color'
-									: 'Registration failed - cross sign in red color'
+									: 'Registration failed - Cross sign in red color'
 							}
 						/>
 						<p className='popup__status-message'>
