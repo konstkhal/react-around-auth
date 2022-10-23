@@ -16,21 +16,20 @@ export default function Header({
 }) {
 	const currentUser = React.useContext(UserContext);
 	const currentPath = useLocation().pathname;
-	//console.log('isLoggedIn: ' + isLoggedIn);
-	/* console.log(
-		'currentUser: ' + JSON.stringify(currentUser)
-	); */
-	//console.log('currentUser.email: ' + currentUser.email);
+	const linkTo =
+		currentPath === '/signin' ? '/signup' : '/signin';
+	const linkText =
+		linkTo === '/signin' ? 'Log in' : 'Sign up';
 
 	return (
 		<header className='header'>
-			{/*    <Link to="/"> } // Need to know, why this does not work */}
-			<img
-				src={logo}
-				className='header__logo'
-				alt='Logo around the us - Just text'
-			/>
-			{/*       </Link> */}
+			<Link to='/'>
+				<img
+					src={logo}
+					className='header__logo'
+					alt='Logo around the us - Just text'
+				/>
+			</Link>
 
 			{isLoggedIn ? (
 				<div className='header__container'>
@@ -46,16 +45,10 @@ export default function Header({
 				</div>
 			) : (
 				<Link
-					to={
-						currentPath.pathname === '/signin'
-							? '/signup'
-							: '/signin'
-					}
+					to={linkTo}
 					className='header__link'
 				>
-					{currentPath.pathname === '/signin'
-						? 'Sign up'
-						: 'Sign in'}
+					{linkText}
 				</Link>
 			)}
 		</header>
