@@ -54,7 +54,7 @@ export default function EditProfilePopup({
 			title='Edit profile'
 			name='editProfile'
 			onSubmit={handleSubmit}
-			isLoading={isLoading}
+			buttonText={isLoading ? 'Saving...' : 'Save'}
 		>
 			<input
 				id='name-input'

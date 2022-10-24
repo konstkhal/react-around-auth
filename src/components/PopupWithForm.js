@@ -17,7 +17,7 @@ export default function PopupWithForm({
 	title,
 	name,
 	isOpen,
-	buttonText = 'Save',
+	buttonText,
 	onClose,
 	onSubmit,
 	children,
