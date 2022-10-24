@@ -192,23 +192,22 @@ export default function App() {
 				if (user.data._id) {
 					setIsSuccess(true);
 
-					setTimeout(() => {
+					/* 				setTimeout(() => {
 						navigate('/signin');
 						setIsInfoTooltipOpen(true);
-					}, 3000);
+					}, 3000); */
 				} else {
 					setIsSuccess(false);
 				}
 			})
 			.catch((err) => {
-				//console.log(err);
 				setIsSuccess(false);
+				setIsInfoTooltipOpen(true);
 			})
 			.finally(() => {
-				//	console.log(isSuccess);
 				setIsLoading(false);
-				setIsSuccess(true);
-				setIsInfoTooltipOpen(false);
+				//		setIsSuccess(true);
+				setIsInfoTooltipOpen(true);
 			});
 	};
 
@@ -315,6 +314,7 @@ export default function App() {
 				<PopupWithForm
 					title='Are you sure?'
 					name='confirmDeleteCard'
+					isLoading={isLoading}
 					buttonText='Yes'
 					isOpen={isConfirmDeletePopupOpen}
 					onClose={closeAllPopups}
