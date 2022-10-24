@@ -4,7 +4,7 @@ import decline from '../images/decline.png';
 export default function InfoToolTip({
 	isOpen,
 	onClose,
-	isSuccess,
+	IsSuccess,
 }) {
 	return (
 		<div
@@ -18,13 +18,13 @@ export default function InfoToolTip({
 					className='popup__close-button popup__close-button_tooltip'
 					onClick={onClose}
 				/>
-				{isSuccess ? (
+				{IsSuccess === true ? (
 					<div>
 						<img
 							className='popup__icon'
 							src={accept}
 							alt={
-								isSuccess
+								IsSuccess === true
 									? 'Registration succefull - Check sign in black color'
 									: 'Registration failed - cross sign in red color'
 							}
@@ -39,7 +39,7 @@ export default function InfoToolTip({
 							className='popup__icon'
 							src={decline}
 							alt={
-								isSuccess
+								IsSuccess === false
 									? 'Registration succefull - Check sign in black color'
 									: 'Registration failed - Cross sign in red color'
 							}

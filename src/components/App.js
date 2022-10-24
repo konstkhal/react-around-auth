@@ -53,11 +53,10 @@ export default function App() {
 	const [isInfoTooltipOpen, setIsInfoTooltipOpen] =
 		React.useState(false);
 
-	//const [isAuthOkPopupOpen, setIsAuthOkPopupOpen] = React.useState(false);
-	const [isSuccess, setIsSuccess] = React.useState(true);
-	//const [isAuthErrPopupOpen, setIsAuthErrPopupOpen] = React.useState(false);
-	const [isUserDetailsOpen, setIsUserDetailsOpen] =
-		React.useState(false);
+	const [IsSuccess, setIsSuccess] = React.useState(true);
+
+	/* 	const [isUserDetailsOpen, setIsUserDetailsOpen] =
+		React.useState(false); */
 	const [isLoggedIn, setIsLoggedIn] = React.useState(false);
 	const [isLoading, setIsLoading] = React.useState(false);
 	const navigate = useNavigate();
@@ -107,17 +106,6 @@ export default function App() {
 			})
 			.catch((err) => console.log(err));
 	}
-
-	/* 	React.useEffect(() => {
-		isLoggedIn &&
-			api
-				.init()
-				.then(([cardData, userData]) => {
-					setCards(cardData);
-					setCurrentUser({ ...currentUser, ...userData });
-				})
-				.catch((err) => console.log(err));
-	}, []); */
 
 	const handleEditProfileClick = () =>
 		setIsEditProfilePopupOpen(true);
@@ -203,20 +191,24 @@ export default function App() {
 			.then((user) => {
 				if (user.data._id) {
 					setIsSuccess(true);
+
 					setTimeout(() => {
 						navigate('/signin');
-						setIsInfoTooltipOpen(false);
+						setIsInfoTooltipOpen(true);
 					}, 3000);
 				} else {
 					setIsSuccess(false);
 				}
 			})
 			.catch((err) => {
+				//console.log(err);
 				setIsSuccess(false);
 			})
 			.finally(() => {
+				//	console.log(isSuccess);
 				setIsLoading(false);
-				setIsInfoTooltipOpen(true);
+				setIsSuccess(true);
+				setIsInfoTooltipOpen(false);
 			});
 	};
 
@@ -228,6 +220,7 @@ export default function App() {
 				localStorage.setItem('jwt', user.token);
 				/* 				setIsInfoTooltipOpen(true); */
 				setIsLoggedIn(true);
+				setIsSuccess(true);
 				setCurrentUser({ ...currentUser, email });
 				navigate('/');
 			})
@@ -241,26 +234,20 @@ export default function App() {
 
 	const handleLogout = () => {
 		setIsLoggedIn(false);
-		setIsUserDetailsOpen(false);
+		/* 		setIsUserDetailsOpen(false); */
 		localStorage.removeItem('jwt');
 	};
-
-	const handleMenuClick = () => {
-		setIsUserDetailsOpen(!isUserDetailsOpen);
-	};
-
 	return (
 		<UserContext.Provider value={currentUser}>
 			<div className='App page'>
 				<InfoTooltip
 					isOpen={isInfoTooltipOpen}
 					onClose={closeAllPopups}
-					IsSuccess={isSuccess}
+					IsSuccess={IsSuccess}
 				/>
 
 				<Header
-					isDropDownOpen={isUserDetailsOpen}
-					handleMenuClick={handleMenuClick}
+					/* 					isDropDownOpen={isUserDetailsOpen} */
 					handleLogout={handleLogout}
 					isLoggedIn={isLoggedIn}
 					email={currentUser.email}
